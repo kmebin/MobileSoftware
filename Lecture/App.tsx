@@ -24,8 +24,8 @@ const App = () => {
 };
 
 const styles = StyleSheet.create({
-  // height: '100%'은 변수 height와 동일한 값
-  SafeAreaView: {backgroundColor: Colors.blue500, height: '50%'},
+  // flex 스타일 속성
+  SafeAreaView: {backgroundColor: Colors.blue500, flex: 1}, // height: '100%'와 동일한 값
   text: {
     fontSize: 20,
     color: Color(Colors.blue500).lighten(0.9).string(),
