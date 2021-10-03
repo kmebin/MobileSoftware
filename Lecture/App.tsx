@@ -11,7 +11,7 @@ import {
 import {Colors} from 'react-native-paper';
 import Color from 'color';
 
-const {width, height} = Dimensions.get('window'); // 비구조화 할당 구문 사용
+const {width, height} = Dimensions.get('window');
 
 const App = () => {
   return (
@@ -24,8 +24,8 @@ const App = () => {
 };
 
 const styles = StyleSheet.create({
-  // SafeAreaView는 width는 부모 그대로, height는 자식 요소의 높이로 설정됨
-  SafeAreaView: {backgroundColor: Colors.blue500, height}, // 폰 높이만큼 height 변경
+  // height: '100%'은 변수 height와 동일한 값
+  SafeAreaView: {backgroundColor: Colors.blue500, height: '50%'},
   text: {
     fontSize: 20,
     color: Color(Colors.blue500).lighten(0.9).string(),
