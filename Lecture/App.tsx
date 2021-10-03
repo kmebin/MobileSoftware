@@ -1,14 +1,33 @@
 import React from 'react';
-import {SafeAreaView, Text} from 'react-native';
-import {create} from './util/createPerson';
+import {SafeAreaView, Alert, Button} from 'react-native';
 
-// 속성이 없다면 function 키워드를 사용하여 함수를 작성하는게 편리
-// 속성이 있다면 화살표 함수로 작성하는게 편리
+// Button 컴포넌트, Alert API 사용
 const App = () => {
-  const person = create();
   return (
     <SafeAreaView>
-      <Text>{JSON.stringify(person, null, 2)}</Text>
+      <Button
+        title="Home"
+        onPress={() => Alert.alert('home pressed.', 'message')}
+      />
+      <Button
+        title="Select"
+        onPress={() =>
+          Alert.alert('select pressed.', 'message', [
+            {
+              text: 'No',
+              onPress: () => {
+                console.log('No');
+              },
+            },
+            {
+              text: 'Yes',
+              onPress: () => {
+                console.log('Yes');
+              },
+            },
+          ])
+        }
+      />
     </SafeAreaView>
   );
 };
