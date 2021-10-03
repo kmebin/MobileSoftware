@@ -1,7 +1,8 @@
 import faker from 'faker';
 import type {info} from './info';
 
-const create = (): info => {
+// 함수를 정의하고 export를 한번에
+export const create = (): info => {
   return {
     id: faker.datatype.uuid(),
     birthday: faker.date.recent(),
@@ -10,5 +11,3 @@ const create = (): info => {
     comments: faker.lorem.paragraph(),
   };
 };
-
-export {create};
