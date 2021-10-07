@@ -12,7 +12,7 @@ const Content = () => {
 };
 
 const styles = StyleSheet.create({
-  view: {padding: 5, backgroundColor: Colors.blue900},
+  view: {flex: 1, padding: 5, backgroundColor: Colors.lightBlue500}, // height: '100%'와 차이
   text: {fontSize: 20, color: 'white'},
 });
 export default Content;
