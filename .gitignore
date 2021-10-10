@@ -116,3 +116,7 @@ package-lock.json
 
 # Android memory profiler files
 *.hprof
+
+###
+.eslintrc.js
+.prettierrc.js
