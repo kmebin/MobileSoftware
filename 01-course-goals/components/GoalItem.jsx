@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
-function GoalItem({ id, title, onDelteGoal }) {
+export default function GoalItem({ id, title, onDelteGoal }) {
   return (
     <View style={styles.goalItem}>
       <Pressable
@@ -28,5 +28,3 @@ const styles = StyleSheet.create({
     opacity: 0.5,
   },
 });
-
-export default GoalItem;
