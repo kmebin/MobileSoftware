@@ -15,16 +15,14 @@ export default function StartGameScreen({ onPickNumber }: StartGameScreenProps) 
   };
 
   const confirmHandler = () => {
-    const userNumber = +enteredNumber;
-
-    if (checkInvalidNumber(userNumber)) {
+    if (checkInvalidNumber(+enteredNumber)) {
       Alert.alert("Invalid number!", "Number has to be a number between 1 and 99.", [
         { text: "Okay", style: "destructive", onPress: resetHandler },
       ]);
       return;
     }
 
-    onPickNumber(userNumber);
+    onPickNumber(+enteredNumber);
   };
 
   return (

@@ -7,8 +7,8 @@ import StartGameScreen from "./screens/StartGameScreen";
 export default function App() {
   const [userNumber, setUserNumber] = useState<number | null>(null);
 
-  const pickNumberHandler = (userNumber: number) => {
-    setUserNumber(userNumber);
+  const pickNumberHandler = (enteredNumber: number) => {
+    setUserNumber(enteredNumber);
   };
 
   return (
