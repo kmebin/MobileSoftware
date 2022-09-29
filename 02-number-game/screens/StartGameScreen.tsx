@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Alert, StyleSheet, TextInput, View } from "react-native";
 import CommonButton from "../components/CommonButton";
+import colors from "../styles/colors";
 import checkInvalidNumber from "../utils/checkInvalidNumber";
 
 export type StartGameScreenProps = {
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
     marginTop: 100,
     marginHorizontal: 24,
     padding: 16,
-    backgroundColor: "#3b021f",
+    backgroundColor: colors.darkPlum,
     borderRadius: 8,
     elevation: 4,
     shadowColor: "black",
@@ -64,8 +65,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginVertical: 8,
     borderBottomWidth: 2,
-    borderBottomColor: "#ddb52f",
-    color: "#ddb52f",
+    borderBottomColor: colors.yellow,
+    color: colors.yellow,
     textAlign: "center",
   },
   buttonsContainer: {

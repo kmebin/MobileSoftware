@@ -1,5 +1,6 @@
 import { PropsWithChildren } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
+import colors from "../styles/colors";
 
 type ButtonProps = {
   onPress: () => void;
@@ -10,7 +11,7 @@ export default function CommonButton({ onPress, children }: PropsWithChildren<Bu
     <View style={styles.buttonContainer}>
       <Pressable
         style={({ pressed }) => pressed && styles.pressed}
-        android_ripple={{ color: "#640233" }}
+        android_ripple={{ color: colors.ripple }}
         onPress={onPress}
       >
         <Text style={styles.buttonText}>{children}</Text>
@@ -22,7 +23,7 @@ export default function CommonButton({ onPress, children }: PropsWithChildren<Bu
 const styles = StyleSheet.create({
   buttonContainer: {
     flex: 1,
-    backgroundColor: "#72063c",
+    backgroundColor: colors.lightPlum,
     borderRadius: 28,
     margin: 4,
     elevation: 2,
