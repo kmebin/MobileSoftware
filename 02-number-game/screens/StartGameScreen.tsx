@@ -3,7 +3,11 @@ import { Alert, StyleSheet, TextInput, View } from "react-native";
 import CommonButton from "../components/CommonButton";
 import checkInvalidNumber from "../utils/checkInvalidNumber";
 
-export default function StartGameScreen() {
+export type StartGameScreenProps = {
+  onPickNumber: (value: number) => void;
+};
+
+export default function StartGameScreen({ onPickNumber }: StartGameScreenProps) {
   const [enteredNumber, setEnteredNumber] = useState("");
 
   const resetHandler = () => {
@@ -11,12 +15,16 @@ export default function StartGameScreen() {
   };
 
   const confirmHandler = () => {
-    if (checkInvalidNumber(+enteredNumber)) {
+    const userNumber = +enteredNumber;
+
+    if (checkInvalidNumber(userNumber)) {
       Alert.alert("Invalid number!", "Number has to be a number between 1 and 99.", [
         { text: "Okay", style: "destructive", onPress: resetHandler },
       ]);
       return;
     }
+
+    onPickNumber(userNumber);
   };
 
   return (
