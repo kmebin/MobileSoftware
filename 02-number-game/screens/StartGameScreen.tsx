@@ -1,13 +1,36 @@
-import { StyleSheet, TextInput, View } from "react-native";
+import { useState } from "react";
+import { Alert, StyleSheet, TextInput, View } from "react-native";
 import CommonButton from "../components/CommonButton";
+import checkInvalidNumber from "../utils/checkInvalidNumber";
 
 export default function StartGameScreen() {
+  const [enteredNumber, setEnteredNumber] = useState("");
+
+  const resetHandler = () => {
+    setEnteredNumber("");
+  };
+
+  const confirmHandler = () => {
+    if (checkInvalidNumber(+enteredNumber)) {
+      Alert.alert("Invalid number!", "Number has to be a number between 1 and 99.", [
+        { text: "Okay", style: "destructive", onPress: resetHandler },
+      ]);
+      return;
+    }
+  };
+
   return (
     <View style={styles.inputContainer}>
-      <TextInput style={styles.numberInput} maxLength={2} keyboardType='number-pad' />
+      <TextInput
+        style={styles.numberInput}
+        value={enteredNumber}
+        maxLength={2}
+        keyboardType='number-pad'
+        onChangeText={(enteredNumber) => setEnteredNumber(enteredNumber)}
+      />
       <View style={styles.buttonsContainer}>
-        <CommonButton>Reset</CommonButton>
-        <CommonButton>Confirm</CommonButton>
+        <CommonButton onPress={resetHandler}>Reset</CommonButton>
+        <CommonButton onPress={confirmHandler}>Confirm</CommonButton>
       </View>
     </View>
   );
@@ -20,7 +43,7 @@ const styles = StyleSheet.create({
     marginTop: 100,
     marginHorizontal: 24,
     padding: 16,
-    backgroundColor: "#4e0329",
+    backgroundColor: "#3b021f",
     borderRadius: 8,
     elevation: 4,
     shadowColor: "black",

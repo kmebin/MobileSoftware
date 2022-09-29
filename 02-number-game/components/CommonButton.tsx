@@ -1,13 +1,17 @@
 import { PropsWithChildren } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
-export default function CommonButton({ children }: PropsWithChildren) {
+type ButtonProps = {
+  onPress: () => void;
+};
+
+export default function CommonButton({ onPress, children }: PropsWithChildren<ButtonProps>) {
   return (
     <View style={styles.buttonContainer}>
       <Pressable
         style={({ pressed }) => pressed && styles.pressed}
         android_ripple={{ color: "#640233" }}
-        onPress={() => console.log("pressed")}
+        onPress={onPress}
       >
         <Text style={styles.buttonText}>{children}</Text>
       </Pressable>
