@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Alert, StyleSheet, TextInput, View } from "react-native";
 import CommonButton from "../components/CommonButton";
-import colors from "../styles/colors";
+import colors from "../constants/colors";
 import checkInvalidNumber from "../utils/checkInvalidNumber";
 
 export type StartGameScreenProps = {

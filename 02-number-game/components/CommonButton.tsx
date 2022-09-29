@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import colors from "../styles/colors";
+import colors from "../constants/colors";
 
 type ButtonProps = {
   onPress: () => void;
