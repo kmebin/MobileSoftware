@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import colors from "../constants/colors";
+import colors from "../../constants/colors";
 
 type ButtonProps = {
   onPress: () => void;
@@ -22,7 +22,6 @@ export default function CommonButton({ onPress, children }: PropsWithChildren<Bu
 
 const styles = StyleSheet.create({
   buttonContainer: {
-    flex: 1,
     backgroundColor: colors.lightPlum,
     borderRadius: 28,
     margin: 4,

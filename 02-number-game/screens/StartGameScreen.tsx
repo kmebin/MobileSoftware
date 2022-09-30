@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Alert, StyleSheet, TextInput, View } from "react-native";
-import CommonButton from "../components/CommonButton";
+import CommonButton from "../components/common/CommonButton";
 import colors from "../constants/colors";
 import checkInvalidNumber from "../utils/checkInvalidNumber";
 
@@ -36,8 +36,12 @@ export default function StartGameScreen({ onPickNumber }: StartGameScreenProps) 
         onChangeText={(enteredNumber) => setEnteredNumber(enteredNumber)}
       />
       <View style={styles.buttonsContainer}>
-        <CommonButton onPress={resetHandler}>Reset</CommonButton>
-        <CommonButton onPress={confirmHandler}>Confirm</CommonButton>
+        <View style={styles.button}>
+          <CommonButton onPress={resetHandler}>Reset</CommonButton>
+        </View>
+        <View style={styles.button}>
+          <CommonButton onPress={confirmHandler}>Confirm</CommonButton>
+        </View>
       </View>
     </View>
   );
@@ -72,5 +76,8 @@ const styles = StyleSheet.create({
   buttonsContainer: {
     flexDirection: "row",
     alignItems: "center",
+  },
+  button: {
+    flex: 1,
   },
 });
