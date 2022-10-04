@@ -7,6 +7,8 @@ export default function Title({ children }: PropsWithChildren) {
 
 const styles = StyleSheet.create({
   title: {
+    width: 300,
+    maxWidth: "80%",
     fontFamily: "open-sans-bold",
     fontSize: 24,
     padding: 12,

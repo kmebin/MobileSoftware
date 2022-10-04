@@ -2,6 +2,7 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import CommonButton from "../components/common/CommonButton";
 import Title from "../components/common/Title";
 import colors from "../constants/colors";
+import { deviceWidth } from "../constants/themes";
 
 export type GameOverScreenType = {
   roundsCount: number;
@@ -33,10 +34,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   imageContainer: {
-    width: 300,
-    height: 300,
+    width: deviceWidth < 380 ? 150 : 300,
+    height: deviceWidth < 380 ? 150 : 300,
     margin: 36,
-    borderRadius: 150,
+    borderRadius: deviceWidth < 380 ? 75 : 150,
     borderWidth: 3,
     borderColor: colors.darkPlum,
     overflow: "hidden",
