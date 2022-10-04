@@ -2,11 +2,11 @@ import { PropsWithChildren } from "react";
 import { StyleSheet, Text } from "react-native";
 import colors from "../../constants/colors";
 
-export type InstructionTextType = {
+export type InstructionTextProps = {
   style?: any;
 };
 
-export default function InstructionText({ children, style }: PropsWithChildren<InstructionTextType>) {
+export default function InstructionText({ children, style }: PropsWithChildren<InstructionTextProps>) {
   return <Text style={[styles.text, style]}>{children}</Text>;
 }
 

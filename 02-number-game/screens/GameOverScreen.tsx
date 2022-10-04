@@ -3,13 +3,13 @@ import CommonButton from "../components/common/CommonButton";
 import Title from "../components/common/Title";
 import colors from "../constants/colors";
 
-export type GameOverScreenType = {
+export type GameOverScreenProps = {
   roundsCount: number;
   userNumber: number;
   onRestart: () => void;
 };
 
-export default function GameOverScreen({ roundsCount, userNumber, onRestart }: GameOverScreenType) {
+export default function GameOverScreen({ roundsCount, userNumber, onRestart }: GameOverScreenProps) {
   const { width, height } = useWindowDimensions();
 
   const imageStyle = {
