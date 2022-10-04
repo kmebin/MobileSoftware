@@ -1,17 +1,21 @@
+import { Ionicons } from "@expo/vector-icons";
 import { useEffect, useRef, useState } from "react";
-import { Alert, StyleSheet, Text, View } from "react-native";
+import { Alert, StyleSheet, View } from "react-native";
+import Card from "../components/common/Card";
 import CommonButton from "../components/common/CommonButton";
+import InstructionText from "../components/common/InstructionText";
 import Title from "../components/common/Title";
 import NumberContainer from "../components/game/NumberContainer";
 import generateRandomNumber from "../utils/generateRandomNumber";
 
 export type GameScreenProps = {
   userNumber: number;
+  onGameOver: () => void;
 };
 
 export type Direction = "higher" | "lower";
 
-export default function GameScreen({ userNumber }: GameScreenProps) {
+export default function GameScreen({ userNumber, onGameOver }: GameScreenProps) {
   const min = useRef(1);
   const max = useRef(100);
 
@@ -21,6 +25,12 @@ export default function GameScreen({ userNumber }: GameScreenProps) {
     const initialGuess: number = generateRandomNumber(min.current, max.current, userNumber);
     setGuess(initialGuess);
   }, []);
+
+  useEffect(() => {
+    if (guess === userNumber) {
+      onGameOver();
+    }
+  }, [guess, userNumber, onGameOver]);
 
   const guessHandler = (direction: Direction) => {
     if ((direction === "higher" && guess > userNumber) || (direction === "lower" && guess < userNumber)) {
@@ -41,13 +51,21 @@ export default function GameScreen({ userNumber }: GameScreenProps) {
     <View style={styles.container}>
       <Title>Opponent's Guess</Title>
       <NumberContainer>{guess}</NumberContainer>
-      <View>
-        <Text>Higher or lower?</Text>
+      <Card>
+        <InstructionText style={styles.instructionText}>Higher or lower?</InstructionText>
         <View style={styles.buttonsContainer}>
-          <CommonButton onPress={() => guessHandler("lower")}>-</CommonButton>
-          <CommonButton onPress={() => guessHandler("higher")}>+</CommonButton>
+          <View style={styles.button}>
+            <CommonButton onPress={() => guessHandler("lower")}>
+              <Ionicons name='remove' size={24} color='white' />
+            </CommonButton>
+          </View>
+          <View style={styles.button}>
+            <CommonButton onPress={() => guessHandler("higher")}>
+              <Ionicons name='add' size={24} color='white' />
+            </CommonButton>
+          </View>
         </View>
-      </View>
+      </Card>
       <View></View>
     </View>
   );
@@ -58,9 +76,14 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 24,
   },
+  instructionText: {
+    marginBottom: 12,
+  },
   buttonsContainer: {
     flexDirection: "row",
-    justifyContent: "center",
     alignItems: "center",
+  },
+  button: {
+    flex: 1,
   },
 });
