@@ -7,8 +7,8 @@ export default function Title({ children }: PropsWithChildren) {
 
 const styles = StyleSheet.create({
   title: {
+    fontFamily: "open-sans-bold",
     fontSize: 24,
-    fontWeight: "bold",
     padding: 12,
     borderWidth: 2,
     borderColor: "white",
