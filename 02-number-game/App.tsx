@@ -1,6 +1,7 @@
 import AppLoading from "expo-app-loading";
 import { useFonts } from "expo-font";
 import { LinearGradient } from "expo-linear-gradient";
+import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { ImageBackground, SafeAreaView, StyleSheet } from "react-native";
 import colors from "./constants/colors";
@@ -38,24 +39,27 @@ export default function App() {
   };
 
   return (
-    <LinearGradient style={styles.rootScreen} colors={[colors.plum, colors.yellow]}>
-      <ImageBackground
-        style={styles.rootScreen}
-        imageStyle={styles.backgroundImage}
-        source={require("./assets/images/background.png")}
-        resizeMode='cover'
-      >
-        <SafeAreaView style={styles.rootScreen}>
-          {gameIsOver ? (
-            <GameOverScreen roundsCount={roundsCount} userNumber={userNumber as number} onRestart={restartHandler} />
-          ) : userNumber ? (
-            <GameScreen userNumber={userNumber} onGameOver={gameOverHandler} />
-          ) : (
-            <StartGameScreen onPickNumber={pickNumberHandler} />
-          )}
-        </SafeAreaView>
-      </ImageBackground>
-    </LinearGradient>
+    <>
+      <StatusBar style='light' />
+      <LinearGradient style={styles.rootScreen} colors={[colors.plum, colors.yellow]}>
+        <ImageBackground
+          style={styles.rootScreen}
+          imageStyle={styles.backgroundImage}
+          source={require("./assets/images/background.png")}
+          resizeMode='cover'
+        >
+          <SafeAreaView style={styles.rootScreen}>
+            {gameIsOver ? (
+              <GameOverScreen roundsCount={roundsCount} userNumber={userNumber as number} onRestart={restartHandler} />
+            ) : userNumber ? (
+              <GameScreen userNumber={userNumber} onGameOver={gameOverHandler} />
+            ) : (
+              <StartGameScreen onPickNumber={pickNumberHandler} />
+            )}
+          </SafeAreaView>
+        </ImageBackground>
+      </LinearGradient>
+    </>
   );
 }
 
