@@ -1,16 +1,17 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useEffect, useRef, useState } from "react";
-import { Alert, StyleSheet, View } from "react-native";
+import { Alert, FlatList, StyleSheet, View } from "react-native";
 import Card from "../components/common/Card";
 import CommonButton from "../components/common/CommonButton";
 import InstructionText from "../components/common/InstructionText";
 import Title from "../components/common/Title";
+import GuessLogItem from "../components/game/GuessLogItem";
 import NumberContainer from "../components/game/NumberContainer";
 import generateRandomNumber from "../utils/generateRandomNumber";
 
 export type GameScreenProps = {
   userNumber: number;
-  onGameOver: () => void;
+  onGameOver: (roundsCount: number) => void;
 };
 
 export type Direction = "higher" | "lower";
@@ -20,15 +21,18 @@ export default function GameScreen({ userNumber, onGameOver }: GameScreenProps) 
   const max = useRef(100);
 
   const [guess, setGuess] = useState(0);
+  const [rounds, setRounds] = useState<number[]>([]);
 
   useEffect(() => {
     const initialGuess: number = generateRandomNumber(min.current, max.current, userNumber);
+
     setGuess(initialGuess);
+    setRounds([initialGuess]);
   }, []);
 
   useEffect(() => {
     if (guess === userNumber) {
-      onGameOver();
+      onGameOver(rounds.length);
     }
   }, [guess, userNumber, onGameOver]);
 
@@ -44,7 +48,9 @@ export default function GameScreen({ userNumber, onGameOver }: GameScreenProps) 
     }
 
     const newGuess = generateRandomNumber(min.current, max.current, guess);
+
     setGuess(newGuess);
+    setRounds((prev) => [newGuess, ...prev]);
   };
 
   return (
@@ -66,7 +72,14 @@ export default function GameScreen({ userNumber, onGameOver }: GameScreenProps) 
           </View>
         </View>
       </Card>
-      <View></View>
+      <View style={styles.listContainer}>
+        <FlatList
+          data={rounds}
+          renderItem={(round) => <GuessLogItem round={rounds.length - round.index} guess={round.item} />}
+          keyExtractor={(item) => item.toString()}
+          alwaysBounceVertical={false}
+        />
+      </View>
     </View>
   );
 }
@@ -85,5 +98,9 @@ const styles = StyleSheet.create({
   },
   button: {
     flex: 1,
+  },
+  listContainer: {
+    flex: 1,
+    padding: 16,
   },
 });

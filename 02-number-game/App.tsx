@@ -9,7 +9,8 @@ import GameScreen from "./screens/GameScreen";
 import StartGameScreen from "./screens/StartGameScreen";
 
 export default function App() {
-  const [userNumber, setUserNumber] = useState<number>();
+  const [userNumber, setUserNumber] = useState<number | null>(null);
+  const [roundsCount, setRoundsCount] = useState(0);
   const [gameIsOver, setGameIsOver] = useState(false);
 
   const [fontsIsLoaded] = useFonts({
@@ -25,6 +26,17 @@ export default function App() {
     setUserNumber(enteredNumber);
   };
 
+  const gameOverHandler = (roundsCount: number) => {
+    setGameIsOver(true);
+    setRoundsCount(roundsCount);
+  };
+
+  const restartHandler = () => {
+    setUserNumber(null);
+    setRoundsCount(0);
+    setGameIsOver(false);
+  };
+
   return (
     <LinearGradient style={styles.rootScreen} colors={[colors.plum, colors.yellow]}>
       <ImageBackground
@@ -35,9 +47,9 @@ export default function App() {
       >
         <SafeAreaView style={styles.rootScreen}>
           {gameIsOver ? (
-            <GameOverScreen />
+            <GameOverScreen roundsCount={roundsCount} userNumber={userNumber as number} onRestart={restartHandler} />
           ) : userNumber ? (
-            <GameScreen userNumber={userNumber} onGameOver={() => setGameIsOver(true)} />
+            <GameScreen userNumber={userNumber} onGameOver={gameOverHandler} />
           ) : (
             <StartGameScreen onPickNumber={pickNumberHandler} />
           )}
