@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "03-food-category",
-    "slug": "03-food-category",
+    "name": "03-meal-category",
+    "slug": "03-meal-category",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
