@@ -1,16 +1,30 @@
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { useEffect, useState } from "react";
 import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import { RootStackParamList } from "../App";
+import IconButton from "../components/IconButton";
 import MealDescriptions from "../components/MealDescriptions";
-import { default as ListItem } from "../components/MealDetail/ListItem";
+import ListItem from "../components/MealDetail/ListItem";
 import Subtitle from "../components/MealDetail/Subtitle";
 import { MEALS } from "../mocks/mockData";
 
 type MealDetailScreenProps = NativeStackScreenProps<RootStackParamList, "MealDetail">;
 
-function MealDetailScreen({ route }: MealDetailScreenProps) {
+function MealDetailScreen({ navigation, route }: MealDetailScreenProps) {
   const { mealId } = route.params;
   const meal = MEALS.find((meal) => meal.id === mealId)!;
+
+  const [isLiked, setIsLiked] = useState(false);
+
+  const likeMealHandler = () => {
+    setIsLiked((prev) => !prev);
+  };
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => <IconButton icon={isLiked ? "star" : "staro"} onPress={likeMealHandler} />,
+    });
+  }, [navigation, likeMealHandler]);
 
   return (
     <ScrollView style={styles.rootContainer}>

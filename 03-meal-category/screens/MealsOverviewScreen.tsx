@@ -9,14 +9,13 @@ type MealsOverviewScreenProps = NativeStackScreenProps<RootStackParamList, "Meal
 
 function MealsOverviewScreen({ navigation, route }: MealsOverviewScreenProps) {
   const { categoryId } = route.params;
+  const meals = MEALS.filter((meal) => meal.categoryIds.find((id) => id === categoryId));
 
   useLayoutEffect(() => {
     const categoryTitle = CATEGORIES.find((category) => category.id === categoryId)?.title;
 
     navigation.setOptions({ title: categoryTitle });
   }, [categoryId, navigation]);
-
-  const meals = MEALS.filter((meal) => meal.categoryIds.find((id) => id === categoryId));
 
   const pressHandler = (mealId: string) => {
     navigation.navigate("MealDetail", { mealId });
