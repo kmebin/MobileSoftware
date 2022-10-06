@@ -3,14 +3,16 @@ import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
 type GridCategoryProps = {
   title: string;
   color: string;
+  onPress: () => void;
 };
 
-export default function GridCategory({ title, color }: GridCategoryProps) {
+function GridCategory({ title, color, onPress }: GridCategoryProps) {
   return (
     <View style={styles.container}>
       <Pressable
         style={({ pressed }) => [styles.button, pressed && styles.pressed, { backgroundColor: color }]}
         android_ripple={{ color: "#ccc" }}
+        onPress={onPress}
       >
         <View style={styles.titleContainer}>
           <Text style={styles.title}>{title}</Text>
@@ -19,6 +21,8 @@ export default function GridCategory({ title, color }: GridCategoryProps) {
     </View>
   );
 }
+
+export default GridCategory;
 
 const styles = StyleSheet.create({
   container: {
