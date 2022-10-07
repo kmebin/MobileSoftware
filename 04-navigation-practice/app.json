@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "04-drawer-navigation",
-    "slug": "04-drawer-navigation",
+    "name": "04-navigation-practice",
+    "slug": "04-navigation-practice",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
